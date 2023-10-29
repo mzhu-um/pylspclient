@@ -106,8 +106,8 @@ class LspClient(object):
 
         :param TextDocumentItem textDocument: The text document.
         """
-        result_dict =  self.lsp_endpoint.call_method("textDocument/documentSymbol", textDocument=textDocument)
-        return [lsp_structs.SymbolInformation(**sym) for sym in result_dict]
+        result_dicts =  self.lsp_endpoint.call_method("textDocument/documentSymbol", textDocument=textDocument)
+        return [lsp_structs.SymbolInformation(result_dict) for result_dict in result_dicts]
 
 
     def definition(self, textDocument, position):
